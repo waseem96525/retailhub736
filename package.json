@@ -1,0 +1,23 @@
+{
+  "name": "retailhub-pos",
+  "version": "1.0.0",
+  "description": "RetailHub - Point of Sale System",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server --port=3000"
+  },
+  "keywords": [
+    "pos",
+    "point-of-sale",
+    "retail",
+    "inventory",
+    "management"
+  ],
+  "author": "RetailHub",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
