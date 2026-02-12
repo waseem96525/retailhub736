@@ -757,6 +757,263 @@
             gap: 2rem;
         }
 
+        /* ===== CART ANIMATION ===== */
+        .cart-animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .cart-character {
+            position: absolute;
+            font-size: 80px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: cartPush 2s ease-in-out forwards;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+
+        .cart-character .person {
+            animation: personWalk 0.3s ease-in-out infinite alternate;
+        }
+
+        .cart-character .cart-emoji {
+            animation: cartBounce 0.2s ease-in-out infinite alternate;
+        }
+
+        .cart-character .product-fly {
+            position: absolute;
+            right: -30px;
+            top: 20px;
+            font-size: 30px;
+            animation: productDrop 0.5s ease-out forwards;
+        }
+
+        @keyframes cartPush {
+            0% {
+                left: -150px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            30% {
+                left: 30%;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            50% {
+                left: 30%;
+                top: 50%;
+                transform: translateY(-50%) scale(1.1);
+            }
+            70% {
+                left: 70%;
+                top: 30%;
+                transform: translateY(-50%) scale(1);
+            }
+            100% {
+                left: 110%;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes personWalk {
+            0% { transform: translateY(0) rotate(-5deg); }
+            100% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        @keyframes cartBounce {
+            0% { transform: rotate(-3deg); }
+            100% { transform: rotate(3deg); }
+        }
+
+        @keyframes productDrop {
+            0% { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(20px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.5);
+            }
+        }
+
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: sparkle 0.6s ease-out forwards;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* ===== CELEBRATION ANIMATION ===== */
+        .celebration-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10000;
+            overflow: hidden;
+        }
+
+        .celebration-sparkle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: celebrationSparkle 1.5s ease-out forwards;
+        }
+
+        .celebration-sparkle.star {
+            width: 20px;
+            height: 20px;
+            background: none;
+            border-radius: 0;
+        }
+
+        .celebration-sparkle.star::before,
+        .celebration-sparkle.star::after {
+            content: '';
+            position: absolute;
+            background: inherit;
+        }
+
+        .celebration-sparkle.star::before {
+            width: 100%;
+            height: 4px;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .celebration-sparkle.star::after {
+            width: 4px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        @keyframes celebrationSparkle {
+            0% {
+                transform: translateY(0) scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) scale(1.5) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .celebration-confetti {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            animation: confettiFall 3s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .celebration-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b, #ff69b4, #00ff88, #00bfff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: celebrationText 2s ease-out forwards;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            z-index: 10001;
+            white-space: nowrap;
+        }
+
+        @keyframes celebrationText {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(-10deg);
+                opacity: 0;
+            }
+            30% {
+                transform: translate(-50%, -50%) scale(1.3) rotate(5deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            80% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.8) rotate(0deg);
+                opacity: 0;
+            }
+        }
+
+        .celebration-emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: emojiFloat 2s ease-out forwards;
+        }
+
+        @keyframes emojiFloat {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-300px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -1655,6 +1912,9 @@
     <!-- Notification Container -->
     <div class="notification-container" id="notificationContainer"></div>
 
+    <!-- Cart Animation Container -->
+    <div class="cart-animation-container" id="cartAnimationContainer"></div>
+
     <!-- Main Content -->
     <div class="main-content">
         <!-- Dashboard View -->
@@ -2378,6 +2638,223 @@
                     </div>
                     <div class="chart-container">
                         <canvas id="storeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stores View -->
+        <div class="view" id="stores">
+            <div class="header">
+                <h2>Store Management</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="openModal('addStoreModal')">
+                        <i class="fas fa-plus"></i>
+                        Add Store
+                    </button>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div>
+                            <div class="stat-label">Total Stores</div>
+                            <div class="stat-value" id="totalStores">3</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div>
+                            <div class="stat-label">Total Inventory</div>
+                            <div class="stat-value" id="storesTotalInventory">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <div class="stat-label">Total Staff</div>
+                            <div class="stat-value" id="totalStaff">12</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <h3 class="section-title">All Stores</h3>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Store Name</th>
+                                <th>Location</th>
+                                <th>Manager</th>
+                                <th>Inventory</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="storesTable">
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div class="stat-icon" style="width: 36px; height: 36px; font-size: 0.875rem;">
+                                            <i class="fas fa-store"></i>
+                                        </div>
+                                        <div>
+                                            <strong>Downtown Store</strong>
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">STR-001</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>123 Main Street, Downtown</td>
+                                <td>John Smith</td>
+                                <td id="store1Inventory">Loading...</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm" onclick="viewStoreDetails('store1')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" onclick="editStore('store1')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div class="stat-icon" style="width: 36px; height: 36px; font-size: 0.875rem; background: linear-gradient(135deg, #8b5cf6, #a78bfa);">
+                                            <i class="fas fa-store"></i>
+                                        </div>
+                                        <div>
+                                            <strong>Mall Location</strong>
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">STR-002</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>456 Shopping Mall, West Wing</td>
+                                <td>Sarah Johnson</td>
+                                <td id="store2Inventory">Loading...</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm" onclick="viewStoreDetails('store2')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" onclick="editStore('store2')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div class="stat-icon" style="width: 36px; height: 36px; font-size: 0.875rem; background: linear-gradient(135deg, #f59e0b, #fbbf24);">
+                                            <i class="fas fa-store"></i>
+                                        </div>
+                                        <div>
+                                            <strong>Airport Branch</strong>
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">STR-003</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>789 Airport Terminal 2</td>
+                                <td>Mike Wilson</td>
+                                <td id="store3Inventory">Loading...</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm" onclick="viewStoreDetails('store3')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" onclick="editStore('store3')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <h3 class="section-title">Store Performance</h3>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div style="background: var(--bg-tertiary); border-radius: 12px; padding: 1.5rem;">
+                        <h4 style="margin-bottom: 1rem; color: var(--text-secondary);">Downtown Store</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Today's Sales</span>
+                                <strong id="store1Sales">₹0</strong>
+                            </div>
+                            <div style="height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
+                                <div id="store1SalesBar" style="height: 100%; width: 0%; background: var(--gradient-primary); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Monthly Target</span>
+                                <span id="store1Target">75%</span>
+                            </div>
+                            <div style="height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
+                                <div style="height: 100%; width: 75%; background: var(--gradient-success); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: var(--bg-tertiary); border-radius: 12px; padding: 1.5rem;">
+                        <h4 style="margin-bottom: 1rem; color: var(--text-secondary);">Mall Location</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Today's Sales</span>
+                                <strong id="store2Sales">₹0</strong>
+                            </div>
+                            <div style="height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
+                                <div id="store2SalesBar" style="height: 100%; width: 0%; background: var(--gradient-primary); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Monthly Target</span>
+                                <span id="store2Target">60%</span>
+                            </div>
+                            <div style="height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
+                                <div style="height: 100%; width: 60%; background: var(--gradient-success); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: var(--bg-tertiary); border-radius: 12px; padding: 1.5rem;">
+                        <h4 style="margin-bottom: 1rem; color: var(--text-secondary);">Airport Branch</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Today's Sales</span>
+                                <strong id="store3Sales">₹0</strong>
+                            </div>
+                            <div style="height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
+                                <div id="store3SalesBar" style="height: 100%; width: 0%; background: var(--gradient-primary); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Monthly Target</span>
+                                <span id="store3Target">85%</span>
+                            </div>
+                            <div style="height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
+                                <div style="height: 100%; width: 85%; background: var(--gradient-success); border-radius: 4px;"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3452,6 +3929,52 @@
         }
 
         // ===== CART MANAGEMENT =====
+        function playCartAnimation(productEmoji = '📦') {
+            const container = document.getElementById('cartAnimationContainer');
+            if (!container) return;
+
+            // Create cartoon character with cart
+            const character = document.createElement('div');
+            character.className = 'cart-character';
+            character.innerHTML = `
+                <span class="person">🧑‍💼</span>
+                <span class="cart-emoji">🛒</span>
+                <span class="product-fly">${productEmoji}</span>
+            `;
+
+            container.appendChild(character);
+
+            // Add sparkles
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.left = (30 + Math.random() * 40) + '%';
+                    sparkle.style.top = (40 + Math.random() * 20) + '%';
+                    sparkle.style.background = ['#6366f1', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444'][Math.floor(Math.random() * 5)];
+                    container.appendChild(sparkle);
+                    
+                    setTimeout(() => sparkle.remove(), 600);
+                }, i * 100 + 500);
+            }
+
+            // Remove character after animation
+            setTimeout(() => {
+                character.remove();
+            }, 2000);
+        }
+
+        function getProductEmoji(category) {
+            const emojis = {
+                'Electronics': '📱',
+                'Accessories': '🎧',
+                'Clothing': '👕',
+                'Home & Garden': '🏡',
+                'default': '📦'
+            };
+            return emojis[category] || emojis['default'];
+        }
+
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
             if (!product || product.stock === 0) return;
@@ -3460,7 +3983,7 @@
 
             if (existingItem) {
                 if (existingItem.quantity >= product.stock) {
-                    showNotification('Stock Limit', `Only ${product.stock} units available`, 'warning');
+                    showNotification('Stock Limit', 'Only ' + product.stock + ' units available', 'warning');
                     return;
                 }
                 existingItem.quantity++;
@@ -3469,8 +3992,12 @@
             }
 
             currentOrder.items = [...cart];
+            
+            // Play cart animation
+            playCartAnimation(getProductEmoji(product.category));
+            
             renderCart();
-            showNotification('Added to Cart', `${product.name} added successfully`, 'success');
+            showNotification('Added to Cart', product.name + ' added successfully', 'success');
         }
 
         function renderCart() {
@@ -3786,7 +4313,95 @@
             
             showNotification('Payment successful!', 'success');
             
+            // Trigger celebration animation
+            triggerCelebration();
+            
             completeOrder();
+        }
+
+        // ===== CELEBRATION ANIMATION FUNCTION =====
+        function triggerCelebration() {
+            // Create celebration container
+            const container = document.createElement('div');
+            container.className = 'celebration-container';
+            container.id = 'celebrationContainer';
+            document.body.appendChild(container);
+
+            // Colors for sparkles and confetti
+            const colors = ['#ffd700', '#ff6b6b', '#ff69b4', '#00ff88', '#00bfff', '#ff8c00', '#9b59b6', '#3498db', '#e74c3c', '#2ecc71'];
+            const emojis = ['🎉', '🎊', '✨', '⭐', '🌟', '💫', '🥳', '👏', '💪', '🛒'];
+
+            // Create sparkles
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'celebration-sparkle';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    sparkle.style.animationDelay = Math.random() * 0.5 + 's';
+                    sparkle.style.animationDuration = (1 + Math.random()) + 's';
+                    container.appendChild(sparkle);
+                }, i * 30);
+            }
+
+            // Create confetti
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'celebration-confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-20px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.3 + 's';
+                    confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    container.appendChild(confetti);
+                }, i * 50);
+            }
+
+            // Create floating emojis
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'celebration-emoji';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + '%';
+                    emoji.style.bottom = '10%';
+                    emoji.style.animationDelay = Math.random() * 0.5 + 's';
+                    emoji.style.animationDuration = (1.5 + Math.random()) + 's';
+                    container.appendChild(emoji);
+                }, i * 100);
+            }
+
+            // Create "Hurray!" text
+            const celebrationText = document.createElement('div');
+            celebrationText.className = 'celebration-text';
+            celebrationText.textContent = '🎉 Hurray! 🎉';
+            document.body.appendChild(celebrationText);
+
+            // Create star bursts
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const star = document.createElement('div');
+                    star.className = 'celebration-sparkle star';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    star.style.animationDelay = Math.random() * 0.3 + 's';
+                    container.appendChild(star);
+                }, i * 80);
+            }
+
+            // Remove celebration elements after animation
+            setTimeout(() => {
+                if (container && container.parentNode) {
+                    container.parentNode.removeChild(container);
+                }
+                if (celebrationText && celebrationText.parentNode) {
+                    celebrationText.parentNode.removeChild(celebrationText);
+                }
+            }, 4000);
         }
 
         async function completeOrder() {
@@ -3850,6 +4465,7 @@
             renderProducts();
             renderInventory();
             loadDashboardStats();
+            loadStoresData();
 
             showNotification('Order completed successfully!', 'success');
         }
@@ -4979,6 +5595,72 @@
             showNotification('All Transactions', 'Loading transaction history...', 'info');
         }
 
+        // ===== STORE MANAGEMENT =====
+        async function loadStoresData() {
+            const sales = await dbGetAll('sales');
+            const today = new Date();
+            const todayString = today.toISOString().split('T')[0];
+            
+            // Calculate inventory per store
+            const store1Products = products.filter(p => p.store === 'store1');
+            const store2Products = products.filter(p => p.store === 'store2');
+            const store3Products = products.filter(p => p.store === 'store3');
+            
+            const store1Inventory = store1Products.reduce((sum, p) => sum + (p.stock || 0), 0);
+            const store2Inventory = store2Products.reduce((sum, p) => sum + (p.stock || 0), 0);
+            const store3Inventory = store3Products.reduce((sum, p) => sum + (p.stock || 0), 0);
+            const totalInventory = store1Inventory + store2Inventory + store3Inventory;
+            
+            // Update inventory displays
+            const store1InvEl = document.getElementById('store1Inventory');
+            const store2InvEl = document.getElementById('store2Inventory');
+            const store3InvEl = document.getElementById('store3Inventory');
+            const storesTotalInvEl = document.getElementById('storesTotalInventory');
+            
+            if (store1InvEl) store1InvEl.textContent = store1Inventory.toLocaleString() + ' items';
+            if (store2InvEl) store2InvEl.textContent = store2Inventory.toLocaleString() + ' items';
+            if (store3InvEl) store3InvEl.textContent = store3Inventory.toLocaleString() + ' items';
+            if (storesTotalInvEl) storesTotalInvEl.textContent = totalInventory.toLocaleString();
+            
+            // Calculate today's sales per store
+            const todaySales = sales.filter(sale => {
+                const saleDate = new Date(sale.timestamp).toISOString().split('T')[0];
+                return saleDate === todayString;
+            });
+            
+            // For demo, distribute sales across stores randomly
+            const maxSales = Math.max(todaySales.reduce((sum, s) => sum + (s.total || 0), 0), 1);
+            const store1Sales = todaySales.slice(0, Math.ceil(todaySales.length / 3)).reduce((sum, s) => sum + (s.total || 0), 0);
+            const store2Sales = todaySales.slice(Math.ceil(todaySales.length / 3), Math.ceil(todaySales.length * 2/3)).reduce((sum, s) => sum + (s.total || 0), 0);
+            const store3Sales = todaySales.slice(Math.ceil(todaySales.length * 2/3)).reduce((sum, s) => sum + (s.total || 0), 0);
+            
+            // Update sales displays
+            const store1SalesEl = document.getElementById('store1Sales');
+            const store2SalesEl = document.getElementById('store2Sales');
+            const store3SalesEl = document.getElementById('store3Sales');
+            
+            if (store1SalesEl) store1SalesEl.textContent = formatCurrency(store1Sales);
+            if (store2SalesEl) store2SalesEl.textContent = formatCurrency(store2Sales);
+            if (store3SalesEl) store3SalesEl.textContent = formatCurrency(store3Sales);
+            
+            // Update sales bars
+            const store1Bar = document.getElementById('store1SalesBar');
+            const store2Bar = document.getElementById('store2SalesBar');
+            const store3Bar = document.getElementById('store3SalesBar');
+            
+            if (store1Bar) store1Bar.style.width = Math.min((store1Sales / maxSales) * 100, 100) + '%';
+            if (store2Bar) store2Bar.style.width = Math.min((store2Sales / maxSales) * 100, 100) + '%';
+            if (store3Bar) store3Bar.style.width = Math.min((store3Sales / maxSales) * 100, 100) + '%';
+        }
+
+        function viewStoreDetails(storeId) {
+            showNotification('Store Details', 'Loading store information...', 'info');
+        }
+
+        function editStore(storeId) {
+            showNotification('Edit Store', 'Opening store editor...', 'info');
+        }
+
         function editProduct(id) {
             const product = products.find(p => p.id === id);
             if (product) {
@@ -5052,6 +5734,7 @@
             renderCustomers();
             loadRecentSales();
             loadDashboardStats();
+            loadStoresData();
 
             const savedTheme = (await dbGet('settings', 'theme')) || 'dark';
             document.body.setAttribute('data-theme', savedTheme);
